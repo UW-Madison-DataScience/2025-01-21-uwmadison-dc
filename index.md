@@ -74,13 +74,26 @@ displayed if the 'eventbrite' field in the header is not set.
 {% if page.eventbrite %}
 <strong>Some adblockers block the registration window. If you do not see the
   registration box below, please check your adblocker settings.</strong>
-<iframe
-  src="https://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt"
-  frameborder="0"
-  width="100%"
-  height="280px"
-  scrolling="auto">
-</iframe>
+<!-- Noscript content for added SEO -->
+<noscript><a href="https://www.eventbrite.com/e/health-sciences-data-carpentry-tickets-1077768186659" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
+<!-- You can customize this button any way you like -->
+<button id="eventbrite-widget-modal-trigger-1077768186659" type="button">Buy Tickets</button>
+
+<script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+
+<script type="text/javascript">
+    var exampleCallback = function() {
+        console.log('Order complete!');
+    };
+
+    window.EBWidgets.createWidget({
+        widgetType: 'checkout',
+        eventId: '1077768186659',
+        modal: true,
+        modalTriggerElementId: 'eventbrite-widget-modal-trigger-1077768186659',
+        onOrderComplete: exampleCallback
+    });
+</script>
 {% endif %}
 
 
